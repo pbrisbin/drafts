@@ -114,7 +114,7 @@ end
 This is a "Ruby" port of this Haskell code:
 
 ```haskell
-readLine = openFile stdin >>= getContents >>= return . head . lines
+readLine = openFile stdin >>= hGetContents >>= return . head . lines
 ```
 
 ```ruby
@@ -127,8 +127,8 @@ end
 
 This is a "Ruby" port of this Haskell code:
 
-``haskell
-putStrLn = openFile stdout >>= putContents
+```haskell
+putStrLn = openFile stdout >>= hPutContents
 ```
 
 Assign to `$main` as that's the only way to trigger actual side-effects
