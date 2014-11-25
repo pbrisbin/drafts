@@ -57,10 +57,10 @@ Even so, all of these mistakes would be hard to make if you had good intentions.
 The types have immediately ruled out a whole host of other errors. For example,
 we can't *only* reverse the list or *only* change the length because that would
 be `[a]` and we're required to return `[b]`. We must apply the function somehow
-as and that's the only way we have for producing anything of type `b`. Similarly
-we can't apply the function only to some elements of the list since a list must
-be heterogeneous. Since we've said the function *can* change the type from `a`
-to `b` we have to implement `map` assuming that it *will*.
+as that's the only way we have for producing anything of type `b`. Similarly we
+can't apply the function only to some elements of the list since a list must be
+heterogeneous. Since we've said the function *can* change the type from `a` to
+`b` we have to implement `map` assuming that it *will*.
 
 If you were to write a function that relied on `map`, you would by extension
 inherit these potential failures and then some:
@@ -74,8 +74,8 @@ mapTwice (+2) [1,2,3]
 ```
 
 Now you have all the same potential for mistake, with the addition of forgetting
-to apply the function at all (since it is now `(a -> a)`, doing so would still
-type-check). Is there a safer way to do this?
+to apply the function at all or applying it too many times (since it is now `(a
+-> a)`, doing so would still type-check). Is there a safer way to do this?
 
 ```haskell
 mapTwice :: Functor f => (a -> a) -> f a -> f a
@@ -92,5 +92,5 @@ Not only do you have a more generally useful function, you also gain safety by
 specifying that you must work with any `Functor f` and not specifically lists.
 This means you can no longer return `[]`, or make a mistake like accidentally
 reordering, shortening, or lengthening your result. At this point, the *only*
-possible error is not applying the function at all -- and that's probably fairly
-avoidable.
+possible error is applying the function the wrong number of times -- and that's
+probably fairly avoidable.
