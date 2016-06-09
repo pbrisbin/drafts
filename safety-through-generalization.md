@@ -59,8 +59,8 @@ we can't *only* reverse the list or *only* change the length because that would
 be `[a]` and we're required to return `[b]`. We must apply the function somehow
 as that's the only way we have for producing anything of type `b`. Similarly we
 can't apply the function only to some elements of the list since a list must be
-heterogeneous. Since we've said the function *can* change the type from `a` to
-`b` we have to implement `map` assuming that it *will*.
+homogeneous. Since we've said the function *can* change the type from `a` to `b`
+we have to implement `map` assuming that it *will*.
 
 If you were to write a function that relied on `map`, you would by extension
 inherit these potential failures and then some:
